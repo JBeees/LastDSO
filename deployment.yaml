@@ -1,0 +1,40 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greet-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: greet
+  template:
+    metadata:
+      labels:
+        app: greet
+    spec:
+      containers:
+      - name: greet-container
+        image: nginx:latest
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: GREETING_TEXT
+            valueFrom:
+              configMapKeyRef:
+                name: greet-config
+                key: GREETING_TEXT
+          - name: API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: greet-secret
+                key: API_KEY
+        ports:
+          - containerPort: 80
+        volumeMounts:
+          - name: data
+            mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: greet-pvc
+

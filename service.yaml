@@ -1,0 +1,13 @@
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: greet-service
+spec:
+  selector:
+    app: greet
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP
+

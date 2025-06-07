@@ -1,0 +1,8 @@
+# configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: greet-config
+data:
+  GREETING_TEXT: "Selamat datang di Greeting-App!"
+
