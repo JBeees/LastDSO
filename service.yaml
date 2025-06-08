@@ -1,13 +1,13 @@
-# service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: greet-service
+  name: static-html-service
 spec:
   selector:
-    app: greet
+    app: static-html
   ports:
-    - port: 80
-      targetPort: 80
+  - protocol: TCP
+    port: 80
+    targetPort: 80
   type: ClusterIP
 

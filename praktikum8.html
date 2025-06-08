@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waktu & Salam</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset dan gaya dasar */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #text {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: rgba(255 255 255 / 0.15);
+      padding: 15px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    #h1 {
+      font-size: 5rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-shadow: 0 0 15px rgba(255 255 255 / 0.8);
+      animation: fadeInUp 1.3s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Animasi fade in & up */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      #text {
+        font-size: 2rem;
+        padding: 10px 20px;
+      }
+
+      #h1 {
+        font-size: 3rem;
+        letter-spacing: 1.5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="text">TES</h1>
+  <h1 id="h1">HALOOO</h1>
+
+  <script>
+    const text = document.getElementById("h1");
+    const text2 = document.getElementById("text");
+
+    function showTime() {
+      const time = new Date();
+      const jam = time.getHours();
+      const timeStr = time.toLocaleTimeString();
+
+      text.innerText = timeStr;
+
+      if (jam < 11) {
+        text2.innerText = "SELAMAT PAGI";
+      } else if (jam < 14) {
+        text2.innerText = "SELAMAT SIANG";
+      } else if (jam < 18) {
+        text2.innerText = "SELAMAT SORE";
+      } else {
+        text2.innerText = "SELAMAT PETANG";
+      }
+    }
+
+    setInterval(showTime, 1000);
+    showTime(); // langsung update tanpa delay
+  </script>
+</body>
+
+</html>
+

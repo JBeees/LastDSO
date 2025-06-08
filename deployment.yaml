@@ -1,40 +1,20 @@
-# deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: greet-deployment
+  name: static-html-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: greet
+      app: static-html
   template:
     metadata:
       labels:
-        app: greet
+        app: static-html
     spec:
       containers:
-      - name: greet-container
-        image: nginx:latest
-        imagePullPolicy: IfNotPresent
-        env:
-          - name: GREETING_TEXT
-            valueFrom:
-              configMapKeyRef:
-                name: greet-config
-                key: GREETING_TEXT
-          - name: API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: greet-secret
-                key: API_KEY
+      - name: nginx
+        image: jbeees/dso:v1
         ports:
-          - containerPort: 80
-        volumeMounts:
-          - name: data
-            mountPath: /data
-      volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: greet-pvc
+        - containerPort: 80
 

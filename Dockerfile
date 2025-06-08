@@ -1,3 +1,2 @@
-FROM nginx
-COPY index2.html /usr/share/nginx/html/index.html
-
+FROM nginx:alpine
+COPY praktikum8.html /usr/share/nginx/html/index.html
